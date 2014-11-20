@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CACBridge</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_stopserv">Stop Service</string>
+<!--SCR3310 VALUES-->
+    <string name="idVendor">0x04E6</string>
+    <string name="iManufacturer">SCM Microsystems Inc</string>
+    <string name="idProduct">0x5116</string>
+    <string name="iProduct">SCR3310 USB Smart Card Reader</string>
+    <string name="bcdDevice">5.23 (firmware release?)</string>
+    <!--string name="bLength">9</string>
+    <string name="bDescriptorType">4</string-->
+    <string name="bInterfaceNumber">0</string>
+    <string name="bAlternateSetting">0</string>
+    <string name="bNumEndpoints">3</string>
+    <string name="bInterfaceClass">0x0B</string>
+    <string name="bInterfaceSubClass">0</string>
+    <string name="bInterfaceProtocol">0</string>
+    <string name="iInterface">4</string>
+    <string name="bLength">0x36</string>
+    <string name="bDescriptorType">0x21</string>
+    <string name="bcdCCID">1.10</string>
+    <string name="bMaxSlotIndex">0x00</string>
+    <string name="bVoltageSupport">0x01</string>
+    <string name="bVoltage">5.0V</string>
+    <string name="dwProtocols">0x0000 0x0003</string>
+    <string name="T0">T=0</string>
+    <string name="T1">T=1</string>
+    <string name="dwDefaultClock">4.000 MHz</string>
+    <string name="dwMaximumClock">8.000 MHz</string>
+    <string name="bNumClockSupported">0</string> <!--(will use whatever is returned)-->
+    <!--IFD does not support GET CLOCK FREQUENCIES request: Broken pipe-->
+    <string name="dwDataRate">10753 bps</string>
+    <string name="dwMaxDataRate">344105 bps</string>
+    <string name="bNumDataRatesSupported">0</string><!--(will use whatever is returned)
+    IFD does not support GET_DATA_RATES request: Broken pipe-->
+    <string name="dwMaxIFSD">252</string>
+    <string name="dwSynchProtocols">0x00000000</string>
+    <string name="dwMechanical">0x00000000</string>
+    <!--No special characteristics-->
+    <string name="dwFeatures">0x000100BA</string>
+    <!-- ....02 Automatic parameter configuration based on ATR data
+    ....08 Automatic ICC voltage selection
+    ....10 Automatic ICC clock frequency change according to parameters
+    ....20 Automatic baud rate change according to frequency and Fi, Di params
+    ....80 Automatic PPS made by the CCID
+    01.... TPDU level exchange-->
+    <string name="dwMaxCCIDMessageLength">271 bytes</string>
+    <string name="bClassGetResponse">0xFF</string>
+    <!--echoes the APDU class-->
+    <string name="bClassEnvelope">0xFF</string>
+    <!--echoes the APDU class-->
+    <string name="wLcdLayout">0x0000</string>
+    <string name="bPINSupport">0x00</string>
+    <string name="bMaxCCIDBusySlots">1</string>
+
+</resources>
