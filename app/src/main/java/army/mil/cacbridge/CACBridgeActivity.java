@@ -1,7 +1,7 @@
 package army.mil.cacbridge;
 
 import android.app.Activity;
-import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.test.ActivityInstrumentationTestCase2;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
+import libsuperuser.Shell;
 
 public class CACBridgeActivity extends Activity {
 
@@ -30,11 +32,68 @@ public class CACBridgeActivity extends Activity {
     public static int TIMEOUT = 0;
     public boolean forceClaim = true;
 
+    public boolean suAvailable = false;
+
+    private class Startup extends AsyncTask<Void, Void, Void> {
+        private ProgressDialog dialog = null;
+        private Context context = null;
+        private String suVersion = null;
+        private String suVersionInternal = null;
+        public List<String> suResult = null;
+
+        public Startup setContext(Context context) {
+            this.context = context;
+            return this;
+        }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        // Let's do some SU stuff
+        suAvailable = Shell.SU.available();
+        if (suAvailable) {
+            suVersion = Shell.SU.version(false);
+            suVersionInternal = Shell.SU.version(true);
+            suResult = Shell.SU.run(new String[] {
+                    "id",
+                    "ls -l /"
+            });
+        }
+
+        // This is just so you see we had a progress dialog,
+        // don't do this in production code
+        try { Thread.sleep(5000); } catch(Exception e) { }
+
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+
+        // output
+        StringBuilder sb = (new StringBuilder()).
+                append("Root? ").append(suAvailable ? "Yes" : "No").append((char)10).
+                append("Version: ").append(suVersion == null ? "N/A" : suVersion).append((char)10).
+                append("Version (internal): ").append(suVersionInternal == null ? "N/A" : suVersionInternal).append((char)10).
+                append((char)10);
+        if (suResult != null) {
+            for (String line : suResult) {
+                sb.append(line).append((char)10);
+            }
+        }
+        if (suAvailable){
+            ((TextView) findViewById(R.id.Hello_World)).setText("Your Device is Not Secured.");
+        }
+        else if (!suAvailable){
+            DetectUSB();
+        }
+    }
+}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cacbridge);
-        DetectUSB();
+        (new Startup()).execute();
+        
     }
 
 
@@ -77,9 +136,9 @@ public class CACBridgeActivity extends Activity {
 
             if (device.getVendorId() == 0x4e6 && device.getProductId() == 0x5116) {
                 //PingUSB();
-                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + getResources().getString(R.string.iProduct) + "\nVendor ID: " + getResources().getString(R.string.idVendor) + "\nProduct ID: " + getResources().getString(R.string.idProduct));
+                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + getResources().getString(R.string.iProduct) + "\nVendor ID: " + getResources().getString(R.string.idVendor) + "\nProduct ID: " + getResources().getString(R.string.idProduct) + "\nRoot Availible:" + String.valueOf(suAvailable));
             } else {
-                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + device.getDeviceName() + "\n Vendor ID: " + device.getVendorId() + "\n Product ID: " + device.getProductId());
+                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + device.getDeviceName() + "\n Vendor ID: " + device.getVendorId() + "\n Product ID: " + device.getProductId() + "\nRoot Availible:" + String.valueOf(suAvailable));
             }
         }
 
@@ -95,7 +154,6 @@ public class CACBridgeActivity extends Activity {
                         UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
                         HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
-                        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
                         // call your method that cleans up and closes communication with the device
                         UsbDeviceConnection connection = manager.openDevice(device);
                         connection.close();
