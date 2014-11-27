@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_stopserv">Stop Service</string>
+    <string name="blank_string"> </string>
 <!--SCR3310 VALUES-->
     <string name="idVendor">0x04E6</string>
     <string name="iManufacturer">SCM Microsystems Inc</string>

@@ -1,9 +1,11 @@
 package army.mil.cacbridge;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
@@ -14,6 +16,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +53,7 @@ public class CACBridgeActivity extends Activity {
     @Override
     protected Void doInBackground(Void... params) {
         // Let's do some SU stuff
+        ((TextView) findViewById(R.id.Hello_World)).setText("Checking Root Status...");
         suAvailable = Shell.SU.available();
         if (suAvailable) {
             suVersion = Shell.SU.version(false);
@@ -68,7 +73,6 @@ public class CACBridgeActivity extends Activity {
 
     @Override
     protected void onPostExecute(Void result) {
-
         // output
         StringBuilder sb = (new StringBuilder()).
                 append("Root? ").append(suAvailable ? "Yes" : "No").append((char)10).
@@ -81,7 +85,7 @@ public class CACBridgeActivity extends Activity {
             }
         }
         if (suAvailable){
-            ((TextView) findViewById(R.id.Hello_World)).setText("Your Device is Not Secured.");
+            RootAchieved();
         }
         else if (!suAvailable){
             DetectUSB();
@@ -91,6 +95,9 @@ public class CACBridgeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_cacbridge);
         (new Startup()).execute();
         
@@ -178,5 +185,20 @@ public class CACBridgeActivity extends Activity {
         UsbEndpoint endpoint = intf.getEndpoint(1);
         UsbDeviceConnection connection = manager.openDevice(device);
         connection.claimInterface(intf, forceClaim);
+    }
+
+    public void RootAchieved(){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Rooted Device Warning");
+        alertDialog.setMessage("This Application Cannot Run on Rooted Devices");
+        alertDialog.setButton("O K", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+// Set the Icon for the Dialog
+        alertDialog.setIcon(R.drawable.ic_launcher);
+        alertDialog.show();
+
     }
 }
