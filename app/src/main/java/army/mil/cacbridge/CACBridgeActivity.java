@@ -1,11 +1,9 @@
 package army.mil.cacbridge;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
@@ -14,11 +12,8 @@ import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,40 +26,83 @@ import java.util.List;
 
 import libsuperuser.Shell;
 
-public class StartupSpash extends Activity {
+public class CACBridgeActivity extends Activity {
 
     public Byte[] bytes;
-    public static int TIMEOUT = 3000;
+    public static int TIMEOUT = 0;
     public boolean forceClaim = true;
 
+    public boolean suAvailable = false;
+
+    private class Startup extends AsyncTask<Void, Void, Void> {
+        private ProgressDialog dialog = null;
+        private Context context = null;
+        private String suVersion = null;
+        private String suVersionInternal = null;
+        public List<String> suResult = null;
+
+        public Startup setContext(Context context) {
+            this.context = context;
+            return this;
+        }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+        // Let's do some SU stuff
+        suAvailable = Shell.SU.available();
+        if (suAvailable) {
+            suVersion = Shell.SU.version(false);
+            suVersionInternal = Shell.SU.version(true);
+            suResult = Shell.SU.run(new String[] {
+                    "id",
+                    "ls -l /"
+            });
+        }
+
+        // This is just so you see we had a progress dialog,
+        // don't do this in production code
+        try { Thread.sleep(5000); } catch(Exception e) { }
+
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+
+        // output
+        StringBuilder sb = (new StringBuilder()).
+                append("Root? ").append(suAvailable ? "Yes" : "No").append((char)10).
+                append("Version: ").append(suVersion == null ? "N/A" : suVersion).append((char)10).
+                append("Version (internal): ").append(suVersionInternal == null ? "N/A" : suVersionInternal).append((char)10).
+                append((char)10);
+        if (suResult != null) {
+            for (String line : suResult) {
+                sb.append(line).append((char)10);
+            }
+        }
+        if (suAvailable){
+            ((TextView) findViewById(R.id.DownloadProgress)).setText("Your Device is Not Secured.");
+        }
+        else if (!suAvailable){
+            DetectUSB();
+        }
+    }
+}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_cacbridge);
-        new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(StartupSpash.this, ISAgreement.class);
-                startActivity(i);
-
-                // close this activity
-                finish();
-            }
-        }, TIMEOUT);
-    }
+        (new Startup()).execute();
         
+    }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.cacbridge, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -98,9 +136,9 @@ public class StartupSpash extends Activity {
 
             if (device.getVendorId() == 0x4e6 && device.getProductId() == 0x5116) {
                 //PingUSB();
-                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + getResources().getString(R.string.iProduct) + "\nVendor ID: " + getResources().getString(R.string.idVendor) + "\nProduct ID: " + getResources().getString(R.string.idProduct));
+                ((TextView) findViewById(R.id.DownloadProgress)).setText("Device: " + getResources().getString(R.string.iProduct) + "\nVendor ID: " + getResources().getString(R.string.idVendor) + "\nProduct ID: " + getResources().getString(R.string.idProduct) + "\nRoot Availible:" + String.valueOf(suAvailable));
             } else {
-                ((TextView) findViewById(R.id.Hello_World)).setText("Device: " + device.getDeviceName() + "\n Vendor ID: " + device.getVendorId() + "\n Product ID: " + device.getProductId());
+                ((TextView) findViewById(R.id.DownloadProgress)).setText("Device: " + device.getDeviceName() + "\n Vendor ID: " + device.getVendorId() + "\n Product ID: " + device.getProductId() + "\nRoot Availible:" + String.valueOf(suAvailable));
             }
         }
 
@@ -140,20 +178,5 @@ public class StartupSpash extends Activity {
         UsbEndpoint endpoint = intf.getEndpoint(1);
         UsbDeviceConnection connection = manager.openDevice(device);
         connection.claimInterface(intf, forceClaim);
-    }
-
-    public void RootAchieved(){
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Rooted Device Warning");
-        alertDialog.setMessage("This Application Cannot Run on Rooted Devices");
-        alertDialog.setButton("O K", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-// Set the Icon for the Dialog
-        alertDialog.setIcon(R.drawable.ic_launcher);
-        alertDialog.show();
-
     }
 }

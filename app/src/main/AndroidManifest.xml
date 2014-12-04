@@ -3,6 +3,8 @@
     package="army.mil.cacbridge" >
     <uses-feature android:name="android.hardware.usb.host" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
@@ -10,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".StartupSpash"
+            android:name=".StartupSplash"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,6 +6,16 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_stopserv">Stop Service</string>
     <string name="blank_string"> </string>
+    <string name="progress_dialog_title_downloading">Downloading…</string>
+    <string name="progress_dialog_title_connecting">Connecting…</string>
+    <string name="progress_dialog_message_prefix_downloading">Downloading file</string>
+    <string name="progress_dialog_message_prefix_connecting">Connecting to</string>
+    <string name="user_message_download_complete">Download complete!</string>
+    <string name="user_message_download_canceled">Download canceled!</string>
+    <string name="error_message_bad_url">Error: Invalid URL!</string>
+    <string name="error_message_file_not_found">Error: File not found!</string>
+    <string name="error_message_general">Error downloading file!</string>
+
 <!--SCR3310 VALUES-->
     <string name="idVendor">0x04E6</string>
     <string name="iManufacturer">SCM Microsystems Inc</string>
