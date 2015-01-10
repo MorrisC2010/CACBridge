@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head id="head">
+    <title>myPay Web Site</title>
+    <meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR" />
+    <meta content="Visual Basic .NET 7.1" name="CODE_LANGUAGE" />
+    <meta content="JavaScript" name="vs_defaultClientScript" />
+    <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link href="mypay/mypay.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0; user-scalable=1;" />
+    <meta name="mobileoptimized" content="0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta http-equiv="X-Frame-Options" content="deny" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="Cache-control" content="no-store" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="mobile.css" type="text/css" media="handheld" />
+    <style type="text/css">
+        .auto-style1
+        {
+            width: 250px;
+        }
+    </style>
+</head>
+<body onkeydown="onKeyDown();" onload="SetLayer();checkForUnsupported();">
+    <noscript>
+        You must have javascript enabled in order to access myPay.
+    </noscript>
+
+    <script language="javascript" src="mypay/mypay.js" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        var g_win = 0;
+        var runOnce = false;
+        var isNetscape60 = false;
+
+        //********************************************************************************
+        //Browser indentification stuff
+        //********************************************************************************
+        var ok = 0;
+        var iescr = 0;
+        var beenChecked = false;
+        /*********************************************/
+        /*********************************************/
+        /*********************************************/
+
+        function browserCheck() {
+            var ok = 0;
+            var iescr = 0;
+            var nm = navigator.userAgent + navigator.appVersion;
+            var napp = navigator.userAgent;
+            var nVer = navigator.appVersion;
+
+            if (nm.indexOf('Netscape2') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Netscape3') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Netscape4') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Netscape4.0') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Netscape5') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Netscape6') > -1) {
+                ok = 0;
+            }
+            if (nm.indexOf('Mozilla/2') > -1) {
+                ok = 1;
+            }
+            if (nm.indexOf('Mozilla/3') > -1) {
+                ok = 0;
+                beenchecked = true;
+            }
+            if (nm.indexOf('Mozilla/4.7') > -1) {
+                ok = 0;
+                beenchecked = true;
+            }
+            if (nm.indexOf('Mozilla/5') > -1) {
+                ok = 1;
+            }
+            if (nm.indexOf('Mozilla/6') > -1) {
+                ok = 1;
+            }
+            if (nm.indexOf('MSIE 2') > -1) {
+                ok = 0;
+                iescr = 1;
+                beenchecked = true;
+            }
+            if (nm.indexOf('MSIE 3') > -1) {
+                ok = 0;
+                iescr = 1;
+                beenchecked = true;
+            }
+            if (nm.indexOf('MSIE 4') > -1) {
+                ok = 0;
+                iescr = 1;
+                beenchecked = true;
+            }
+            if (nm.indexOf('MSIE 5') > -1) {
+                ok = 0;
+                iescr = 1;
+            }
+            if (nm.indexOf('MSIE 6') > -1) {
+                ok = 1;
+                iescr = 1;
+            }
+            if (nm.indexOf('MSIE 7') > -1) {
+                ok = 1;
+                iescr = 1;
+            }
+            if (nm.indexOf('MSIE 8') > -1) {
+                ok = 1;
+                iescr = 1;
+            }
+            if (nm.indexOf('Netscape') > -1) {
+                if (parseFloat(nVer) < parseFloat("4.06")) {
+                    ok = 0;
+                }
+                else {
+                    if (napp.indexOf('6/6.0') > -1) {
+                        ok = 0;
+                        isNetscape60 = true;
+                    }
+                    else {
+                        if (napp.indexOf('/7') > -1) {  //Netscape 7.0 is OK no longer
+                            ok = 0;
+                        }
+                    }
+                }
+            }
+
+            if (nm.indexOf('Netscape') > -1) {
+                if (napp.indexOf('/8') > -1)    //Netscape 8.0 is OK  no longer
+                { ok = 0; }
+            }
+            if (nm.indexOf('Netscape') > -1) {
+                if (napp.indexOf('/9') > -1)    //Netscape 9.0 is OK no longer
+                { ok = 0; }
+            }
+            if (nm.indexOf('Navigator') > -1) {
+                { ok = 0; } 			 //Navigator is OK no longer
+            }
+            if (nm.indexOf('Netscape') > -1) {
+                { ok = 0; } 			 //Netscape is OK no longer
+            }
+
+            if (nm.indexOf('WebTV') > -1) {
+                ok = 0;
+                iescr = 1;
+            }
+            if (nm.indexOf('BlackBerry') > -1) {
+                ok = 1;
+                iescr = 1;
+            }
+
+
+            //alert("ok=" + ok + " nm=" + nm + " napp="+napp);
+            return ok;
+        }
+
+        function isDown() {
+            alert("myPay is currently unavailable.  Please see our System Message.")
+            return false
+        }
+
+        function checkForUnsupported() {
+            var ok = 0;
+            var iescr = 0;
+            var napp = navigator.userAgent;
+            var nVer = navigator.appVersion;
+            var nm = navigator.appName + navigator.appVersion;
+
+            var browType;
+            switch (nm.indexOf('Netscape')) {
+                case -1:
+                    //IE of some sort
+                    browType = 'IE';
+                    ok = browserCheck();
+                    break;
+                default:
+                    //netscape compatible
+                    browType = 'NS'
+                    ok = browserCheck();
+                    break;
+            }
+            //alert("browType=" + browType + " ok=" + ok + " nm=" + nm)
+            var x = "";
+            if (ok == 0) {
+
+                if (nm.indexOf('Netscape') > -1) {
+
+                    //alert("am I here for Netscape")					
+                    //document.getElementById("cmdGo").disabled =true;
+                    document.Form1.cmdGo.disabled = true;
+
+                    x = "You will not be able to access myPay using a Netscape browser."
+                    document.getElementById("Msg").innerHTML = x;
+
+                }
+                else {
+                    //IE write message
+                    if (beenChecked == false) {
+                        x = "You may continue to use this browser to access myPay; however, it will not be supported by myPay in the event you have a problem making the browser work.  We recommend that you use a supported browser.  See our FAQs.";
+                        document.getElementById("Msg").innerHTML = x;
+                        document.getElementById("Msg").style.fontSize = "x-small";
+                        beenChecked = true;
+                    }
+                    if (beenChecked == true) {
+                        document.Form1.cmdGo.disabled = true;
+                        x = "You will not be able to access myPay using this browser."
+                        document.getElementById("Msg").innerHTML = x;
+                        document.getElementById("Msg").style.fontSize = "x-small";
+                    }
+                }
+            }
+            else {
+                //alert('Browser OK? ' + ok);
+            }
+
+            return ok;
+        }
+
+
+        //********************************************************************************
+
+        //This uses the server ID variable from the ServerID.js include file to determine the correct CGI access
+        var nm = navigator.appName + navigator.appVersion;
+        var CGIURL = 'https://mypay.dfas.mil/PinLetter.aspx';
+
+
+
+        //No RIGHT CLICK   ************
+        // ****************************
+        if (window.Event) {
+            //document.captureEvents(Event.MOUSEUP | Event.MOUSEDOWN | Event.KEYPRESS);
+            document.oncontextmenu = nocontextmenu;
+            document.onMouseDown = norightclick;
+            document.onMouseUp = norightclick;
+        }
+
+        function nocontextmenu() {
+            if (window.Event) {
+                Event.cancelBubble = true;
+                Event.returnValue = false;
+            }
+            return false;
+        }
+
+        function norightclick(e) {
+            var br = new String(navigator.appName + navigator.appVersion);
+            // Netscape first
+            if (window.Event) {
+                if (e.which != 1) {
+                    return false;
+                }
+            }
+            else
+                if (Event.button != 1) {
+                    // IE 4 requires a replacement(?) 
+                    if (br.indexOf('MSIE 4') > -1)
+                        alert("Function disabled");
+                    Event.cancelBubble = true;
+                    Event.returnValue = false;
+                    return false;
+                }
+
+        }
+        document.oncontextmenu = nocontextmenu;
+        document.onMouseDown = norightclick;
+        document.onMouseUp = norightclick;
+        //**************************************
+        // Block backspace onKeyDown************
+        // *************************************
+
+        function onKeyDown() {
+            if (
+		(event.altKey)
+			|| ((event.keyCode == 8) && (event.srcElement.type != "text" && event.srcElement.type != "textarea" && event.srcElement.type != "password"))
+			|| ((event.ctrlKey) && ((event.keyCode == 78) || (event.keyCode == 82)))
+			|| (event.keyCode == 116)
+			|| ((event.srcElement.type == "text") && ((event.srcElement.disabled == true) || (event.srcElement.readOnly == true)))
+
+		) {
+                // Only allow ALT-TAB(system navigation) and disallow
+                // the ALT+RIGHTARROW(37), ALT+LEFTARROW(39) keys, or ALT+HOME(36). 			
+                if (event.altKey && (event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 36))
+                    alert('The ALT navigation keys are disabled');
+                event.keyCode = 0;
+                event.returnValue = false;
+            }
+        }
+
+        //backward compatible code to trap "events" on Netscape 4 browsers
+        var nav = window.Event ? true : false;
+
+        if (nav) {
+            //window.captureEvents(Event.KEYDOWN);
+            window.onkeydown = NetscapeEventHandler_KeyDown;
+        } else {
+            document.onkeydown = MicrosoftEventHandler_KeyDown;
+        }
+
+        function NetscapeEventHandler_KeyDown(e) {
+            //alert(e.which);
+            //Netscape6 fires this event twice
+            if (e.which == 13) {
+
+                if (runOnce == false) {
+                    if (nm.indexOf('Netscape4') == -1) {
+                        runOnce = true;
+                    }
+
+                    document.Form1.cmdGo.click();
+                }
+                else {
+                    runOnce = false;
+                }
+
+                return false;
+            } return true;
+        }
+
+        function MicrosoftEventHandler_KeyDown() {
+            //alert(event.keyCode);
+            //alert(event.srcElement.type);
+            if (event.keyCode && event.keyCode == 13) {
+                if (nm.indexOf('MSNTV') > -1) {
+                    return true;
+                }
+                else {
+                    return true;
+                    document.Form1.cmdGo.click();
+                }
+                return false;
+
+            } else return true;
+        }
+
+        //-->
+    </script>
+
+    <form id="LoginForm" method="post" target="mpeex">
+        <input name="visSsn" type="hidden" id="visSsn" />
+        <input name="visPW" type="hidden" id="visPW" />
+        <input name="visOrder" type="hidden" id="visOrder" value="USERINPUT" />
+        <input type="hidden" name="visSmartEmail" id="visSmartEmail">
+    </form>
+
+    <form name="Form1" method="post" action="https://mypay.dfas.mil/mypay.aspx?MBU=F" id="Form1" target="mpeex" autocomplete="off">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTM4NTQxOTAzMQ9kFgICBw8WAh4MYXV0b2NvbXBsZXRlBQNvZmYWBAIDD2QWAmYPZBYCZg9kFgQCBQ8PZBYCHgdvbmNsaWNrBT1qYXZhc2NyaXB0OmlmKHZlcmlmeUNsaWNrKCkpe3JldHVybiB0cnVlO31lbHNle3JldHVybiBmYWxzZTt9ZAIJD2QWAmYPZBYCAgEPD2QWAh8BBU9qYXZhc2NyaXB0OmNhY29wZW4oJ2h0dHBzOi8vbXlwYXkuZGZhcy5taWwvU21hcnRjaGVjay9TbWFydENoZWNrLmFzcHgnLCdtcGVleCcpZAIHDxYCHgdWaXNpYmxlaGRkf8CuxPoZ0bOuNt8WwwRTou4u5t4=" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3AFA8E21" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCQL0mZD4DAK4kMXnCQLUkOn3AwKg7oCFAQLX3Na8DQKykIH5AwLEioisCAK2rtfPDQLqityaC9rehZa55pm+uMccvKghghpKvdiz" />
+</div>
+        <table id="TableHeader" cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr>
+		<td>
+                    <span id="MyPayHeader"><table id="header" width="100%" border="0" cellspacing="0" cellpadding="0" name="header">
+			<tr>
+				<td bgcolor="#1e2f81" colspan="2"><a href="https://mypay.dfas.mil/mypay.aspx"><img src="mypay/indexhdr1b.jpg" height="80" alt="myPay" width="100%" border="0" /></a></td>
+			</tr>
+			<tr>
+				<td onmouseout="window.status='';return true" align="left" bgcolor="#595959" class="title" onmouseover="window.status='DI-08';return true" onblur="window.status='';return true" onfocus="window.status='DI-08';return true" tabindex="99">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align="center" bgcolor="#595959"><span align="center"><a href="Accessibility.htm" class="menu" tabindex="1">Accessibility/Section 508&nbsp;&nbsp;</a><img src="mypay/mnuspacer.gif" alt="" width="3" /><a href="Security.htm" class="menu" tabindex="3">&nbsp;&nbsp;Security&nbsp;&nbsp;</a><img src="mypay/mnuspacer.gif" alt="" width="3" /><a href="privacy.htm" class="menu" tabindex="4">&nbsp;&nbsp;Privacy Notice&nbsp;&nbsp;</a><img src="mypay/mnuspacer.gif" alt="" width="3" /><a href="FAQ.htm" class="menu" title="Frequently Asked Questions" tabindex="5">&nbsp;&nbsp;FAQ&nbsp;&nbsp;</a><img src="mypay/mnuspacer.gif" alt="" width="3" /><a href="FAQ.htm#ABOUT myPay" class="menu" tabindex="7">&nbsp;&nbsp;System Usage&nbsp;&nbsp;</a><img src="mypay/mnuspacer.gif" alt="" width="3" /><a href="https://corpweb1.dfas.mil/askDFAS/askMYPAY.jsp" class="menu" tabindex="8">&nbsp;&nbsp;Contact Us&nbsp;&nbsp;</a></span></td>
+			</tr>
+		</table>
+		</span>
+                </td>
+	</tr>
+</table>
+
+        <table id="MainTable" cellspacing="0" cellpadding="0" width="100%" border="1">
+	<tr>
+		<td valign="top" class="bluebackground">
+                    <table id="LeftTable" cellspacing="0" cellpadding="0" width="100%" border="0">
+                        <tr>
+                            <td class="menu" style="width: 100%">&nbsp;&nbsp;Log In
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style1">
+                                <div id="Msg" style="font-weight: bold; font-size: small; color: red; font-family: Verdana, Arial">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 100%">
+                                <center>
+                                    Account Access</center>
+                                <br />
+                                <label for="visLogin">
+                                    Login ID:<br />
+                                </label>
+
+                                <input name="visLogin" type="text" maxlength="129" size="33" id="visLogin" tabindex="10" AutoComplete="Off" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 100%">
+                                <a style="font-size: 105%; text-decoration: underline; color: #000099;" href="javascript:winopen('https://mypay.dfas.mil/GetLoginID.aspx','mpeex')">Forgot your Login ID?</a>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 100%">
+                                <label for="visPin">
+                                    Password:<br />
+                                </label>
+                                <input name="visPin" type="password" maxlength="30" size="34" id="visPin" tabindex="11" AutoComplete="Off" /><br />
+                                <a style="font-size: 105%; text-decoration: underline; color: #000099;" href="javascript:winopen('https://mypay.dfas.mil/PinLetter.aspx','mpeex')">Forgot or Need a Password?</a>
+                                <br />
+                                <br />
+                                <center>
+                                    <input type="submit" name="cmdGo" value="Go" onclick="javascript:if(verifyClick()){return true;}else{return false;};" id="cmdGo" tabindex="12" style="font-weight:bold;width:150px;" />&nbsp;&nbsp;&nbsp;<img
+                                        height="20" alt="SSL" src="mypay/lock1.gif" width="15" id="Img1" style="border-style: none" /></center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 250px"></td>
+                        </tr>
+                        <tr>
+                            <td class="menu5" align="center" style="width: 250px">To enter your Password more securely, click on the On-Screen Keyboard link below.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" align="center" style="width: 250px">
+                                <input name="btnLink" type="submit" id="btnLink" tabindex="13" value="On-Screen Keyboard" style="border-style: none; border-color: inherit; border-width: 0; text-decoration: underline; font-weight: bold; height: 22px; background-color: #CAE1FF;" onclick="javascript: if (verifyVK()) { return true; } else { return false; }" />
+                            </td>
+                        </tr>
+                        <!-- CAC not going in Phase I of security release  -->
+                        <tr>
+                            <td class="menu2" style="width: 250px"></td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 250px">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu2" style="width: 250px">
+                                <table cellpadding="2" width="98%">
+                                    <tr id="trCAC">
+			<td width="90%" align="center">
+                                            <input type="submit" name="cmdCAC" value="SmartCard Login" onclick="javascript:cacopen('https://mypay.dfas.mil/Smartcheck/SmartCheck.aspx','mpeex');" id="cmdCAC" class="ButtonText" style="font-weight:bold;width:150px;" /><br />
+                                            <p style="color: #8B0000; font-weight: bold; font-family: Arial, Helvetica, sans-serif; text-align: center; font-size: 90%">DoD CAC | PIV</p>
+                                        </td>
+			<td align="right">
+                                            <img alt="SmartCard" src="mypay/cac.jpg" border="0" height="80" width="45" />
+                                        </td>
+		</tr>
+		
+                                </table>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu" style="width: 250px">&nbsp;&nbsp;New User
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu4" style="width: 250px"><br />Read this First:&nbsp;&nbsp; 
+                                <a style="font-size: 105%; text-decoration: underline; color: #8B0000;"
+                                    href="javascript:winopen('NewUserGuidance.pdf','')">How New Accounts are Added to myPay</a>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="menu4" style="width: 250px">
+                                <a style="font-size: 115%; text-decoration: underline; color: #000099;" href="javascript:winopen('https://mypay.dfas.mil/myPayEnroll.aspx','mpeex')">Create an Account </a>
+                                <br />
+                                You will need a temporary password to proceed.<br /><br />
+                            </td>
+                        </tr>
+
+
+                        <!--
+                    <tr align="center">
+                        <td class="menu3">
+                            <br />
+                            <a style="font-size: 105%; text-decoration: underline" href="PersonalData.htm">
+                            Click here for information on Protecting Your Personal Data       <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="menu3" align="center" style="font-size: 100%;">
+                            Read Important Security Information before logging in
+                        </td>
+                    </tr>
+                    -->
+
+                        <tr>
+                            <td class="menu" style="width: 250px">&nbsp;&nbsp;Stay Connected
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style1">
+                                <table>
+                                    <tr>
+                                        <td width="10%">&nbsp;</td>
+                                        <td valign="middle">
+                                            <a style="font-size: 80%; text-decoration: none" href="http://www.facebook.com/defensefinanceandaccountingservice "
+                                                shape="rect" target="_blank">
+                                                <img alt="Facebook logo" src="mypay/facebooklogo.jpg" border="0" style="width: 37px; height: 31px;" /></a>
+                                        </td>
+                                        <td width="20%">&nbsp;</td>
+                                        <td valign="middle">
+                                            <a style="font-size: 80%; text-decoration: none" href="http://www.youtube.com/user/WePayDoD"
+                                                shape="rect" target="_blank">
+                                                <img alt="YouTube logo" src="mypay/youtubelogo.jpg" border="0" style="width: 82px; height: 30px" /></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style1">
+                                &nbsp;<br /> &nbsp;<br /> 
+
+                                <table border="4" width="100%" bgcolor="white" bordercolorlight="purple" bordercolordark="purple">
+                                    <tr>
+                                        <td style="font-size: 92%">
+                                            <img alt="DFAS LOGO" src="mypay/dfas.gif" border="0" height="32" width="32" />
+                                            &nbsp;&nbsp; It's about the customer!
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                
+        <table id="WarningTable" cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr>
+		<td class="footer" colspan="2">
+                    <b>WARNING</b><br />
+                    18 U.S.C. § 1030 prohibits unauthorized or fraudulent access to government computer
+                systems. If the credentials you enter are not your own, you are in violation of
+                this law and should exit this system immediately. Completing this action may subject
+                you to a fine of up to $5,000 or double the value of anything obtained via this
+                unauthorized access, plus up to five years imprisonment.
+                <p>
+                </p>
+                    Unauthorized use may subject you to criminal prosecution. Evidence of unauthorized
+                use collected during monitoring may be used for administrative, criminal, or other
+                adverse action. Use of this DoD computer system constitutes consent to monitoring
+                for these and other purposes.
+                <p>
+                    TO PROTECT YOUR PAY INFORMATION, EXIT WHEN FINISHED
+                </p>
+                </td>
+	</tr>
+</table>
+
+        
+        <table id="tblMessage">
+	<tr>
+		<td>
+                    <div id="ctlPanel3">
+			
+                    
+		</div>
+                </td>
+	</tr>
+</table>
+
+    </form>
+</body>
+</html>

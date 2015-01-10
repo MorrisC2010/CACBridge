@@ -1,0 +1,260 @@
+TD.blocks
+{
+    font-family: Arial, Arial Narrow, Tahoma, Times New Roman, Helvetica, sans-serif;
+    color: black;
+    font-size: 75%;
+    text-decoration: none;
+    font-weight: bold;
+    vertical-align: top;
+}
+A.blocks
+{
+    font-family: Arial, Arial Narrow, Helvetica, sans-serif;
+    color: blue;
+    background-color: white;
+    font-size: 95%;
+}
+
+A.blocks:hover
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color:  #E00000;
+    background-color: white;
+    text-decoration: none;
+    font-size: 8pt;
+}
+A.menu
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 8pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+A.menu:hover
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 8pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+A.menu:visited
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 8pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+TD.menu
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 3px 0px 3px 0px;
+    background-color: #333399;
+}
+
+TR.blocks
+{
+    height: 20px;
+}
+
+TD.menu2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 69%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 1px 2px 2px;
+    width: 250px;
+    background-color: #CAE1FF;
+}
+
+TD.m_menu2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    background-color: #CAE1FF;
+}
+
+TD.menu_old2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 69%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    width: 250px;
+    background-color: #ffffcc;
+}
+
+TD.menu3
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 80%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    width: 250px;
+}
+
+TD.menu4
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 75%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    width: 250px;
+    background-color: #FFFFFF;
+}
+
+TD.menu5
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #8B0000;
+    font-size: 70%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    width: 250px;
+    background-color: #CAE1FF;
+}
+.bluebackground
+{
+    background-color: #F0F8FF;
+}
+
+TD.large
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: Black;
+    font-size: 100%;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+    width: 250px;
+    background-color: white;
+}
+
+
+Table.blocks
+{
+    border-left: #e4e4c9 1px solid;
+    border-right: #e4e4c9 1px solid;
+    border-bottom: #e4e4c9 1px solid;
+    border-top: #e4e4c9 1px solid;
+}
+
+Table.mainTable
+{
+    border-left: black 1px solid;
+    border-right: black 1px solid;
+    border-bottom: black 1px solid;
+    border-top: black 1px solid;
+}
+TD.outerCell
+{
+    border-left: #e4e4c9 1px solid;
+    border-right: #e4e4c9 1px solid;
+    border-bottom: #e4e4c9 1px solid;
+    border-top: #e4e4c9 1px solid;
+}
+TD.menubody
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+}
+TD.menubodybold
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 5px 2px 5px;
+}
+
+TD.footer
+{
+    font-family: "Arial, Helvetica, sans-serif";
+    font-size: 60%;
+    line-height: normal;
+    height: 50px;
+}
+TD.menu
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 75%;
+    font-weight: bold;
+    text-decoration: none;
+}
+TD.menuColor
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    text-decoration: none;
+    height: 20px;
+    width: 11px;
+}
+
+td.title
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+    font-size: 14pt;
+    text-decoration: none;
+}
+
+div.leftColumn
+{
+    position: relative;
+    top: 0;
+}
+
+.RedText
+{
+    color: #8B0000;
+}                                                                                      
+
+.RedLarge
+{
+    color: #E00000;
+    font-size: 110%;
+}
+
+.RedLargeC
+{
+    color: #E00000;
+    font-size: 110%;
+    text-align: center;
+}
+.Large
+{
+    font-size: 110%;
+}
+.LargeC
+{
+    font-size: 110%;
+    text-align: center;
+}
+.ButtonText
+{
+    font-size: 80%;
+}

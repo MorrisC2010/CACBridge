@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<!-- SiteMinder Encoding=ISO-8859-1; -->
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+    <link rel="stylesheet" href="ako/ako.css"/>
+    <link rel="shortcut icon" href="https://www.us.army.mil/suite/portal/img/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <title>Army Knowledge Online</title>
+    <script src="ako/ako.js"></script>
+</head>
+<body>
+<div class="mainWrapper">
+    <div class="header">
+        <div id="topBar" class="classBar ">This information system is approved for UNCLASSIFIED//<span id="topClass">FOUO</span> data</div>
+        <div id="nav" class="nav">
+            <div class="logos">
+                <img id="fLogo" src="https://www.us.army.mil/suite/login/ako_login_logo_fouo.png" alt="Army Knowledge Online - FOUO" />
+                <img id="nfLogo" class="hide" src="https://www.us.army.mil/suite/login/ako_login_logo_nonfouo.png" alt="Army Knowledge Online - NON-FOUO" />
+            </div>
+        </div>
+    </div>
+    <div id="alert" class="hide"></div>
+    <noscript>
+        <div class="nojs">Please enable JavaScript before logging in!</div>
+    </noscript>
+    <div class="main">
+        <div class="login">
+            <div id="agreement">
+                <p><strong>YOU ARE ACCESSING A U.S. GOVERNMENT (USG) INFORMATION SYSTEM (IS) THAT IS PROVIDED FOR USG-AUTHORIZED USE ONLY.</strong></p>
+                <p>By using this IS (which includes any device attached to this IS), you consent to the following conditions:</p>
+                <ul>
+                    <li>The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+                    <li>At any time, the USG may inspect and seize data stored on this IS.
+                    <li>Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+                    <li>This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+                    <li>Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See <a onclick="AL.useragreement();return false;" href="#" title="User Agreement" target="_blank" tabindex="-1">User Agreement</a> for details.
+                </ul>
+                <div class="acceptButton">
+                    <button id="accept" onclick="AL.accept();" class="btn primary">I Accept</button>
+                </div>
+            </div>
+            <div id="loginForm">
+                <div class="tabs">
+                    <ul>
+                        <li id="fTab" onclick="AL.tab();" class="sel">CAC/PIV Login</li>
+                        <li id="nfTab" onclick="AL.tab('nf');">I don't have a CAC/PIV</li>
+                    </ul>
+                </div>
+                <div id="fouo" class="fouo">
+                    <div class="cacImg">
+                        <a href="#" onclick="AL.cert();return false;"><img alt="" src="https://www.us.army.mil/suite/login/cac.gif"/></a>
+                    </div>
+                    <div class="fouoForm">
+                        <h1>Sign in using your CAC/PIV</h1>
+                        <p><a href="https://esd-crm.csd.disa.mil/app/answers/detail/a_id/95" title="How do I log into AKO using my CAC?" target="_blank">Insert your CAC/PIV</a> into the <a href="https://esd-crm.csd.disa.mil/app/answers/detail/a_id/482" title="CAC/PIV Usage" target="_blank">card reader</a>, then Sign in.</p>
+                        <div class="signin">
+                            <div class="signinButtonContainer">
+                                <button id="signinButton" class="btn wide primary" title="Sign in with your CAC/PIV" onclick="AL.cert();">Sign in</button>
+                            </div>
+                            <div id="signinOptionsCert" class="signinOptions">
+                                <ul>
+                                    <li><input type="checkbox" id="lbwf" name="lbwf" value="on" />&nbsp;Low Bandwidth</li>
+                                    <li><input type="checkbox" id="webmailf" name="webmailf" value="on" />&nbsp;Sign in directly to Webmail</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="help"><a href="https://esd-crm.csd.disa.mil/" title="Open AKO Help" target="_blank">Having trouble accessing AKO?</a></p>
+                        <div class="hr">&nbsp;</div>
+                        <h1>New to AKO? <span class="signup">Sign up</span></h1>
+                        <div class="registerButton">
+                            <form action="https://certificate.us.army.mil/suite/pages/reg/tokenStart.ext" method="get">
+                                <button type="submit" title="Create a new account" class="btn">Create Account with CAC</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div id="nonfouo" class="nonfouo" style="display:none">
+                    <h1>Non-FOUO Portal</h1>
+                    <p>You can sign into AKO without a CAC/PIV, but information marked FOUO is not accessible.</p>
+                    <p id="ipw">Invalid Username or Password</p>
+                    <form id="login" name="login" method="post">
+                        <input type="hidden" id="target" name="target" value="https://login.us.army.mil/SmKBAuth/LoginEnrollmentForms/SmKBAuth.fcc?site=ONE&TYPE=33554432&REALMOID=06-532666b4-7541-1005-8b6f-832f13160000&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME=-SM-XeHOmTYGdo5lT6ctArAivGV%2faFYY6LMGw5RkYoLTW%2bItmoZVbbnjqCLPEM8hKZ%2ft&TARGET=-SM-HTTP%3a%2f%2fwww%2eus%2earmy%2emil%2fsuite%2fdesigner%3fmobile%3dtrue" />
+                        <input type="hidden" name="smquerydata" value="" />
+                        <input type="hidden" name="smauthreason" value="0" />
+                        <input type="hidden" name="smagentname" value="o8Rc1CnMzrYqxaNYlt7BewL7jx5IlO25mFAiVAkDqBHxcKazZQqKStqmDNolsEgk" />
+                        <input type="hidden" name="formsauth" value="unused" />
+                        <input type="hidden" name="postpreservationdata" value="" />
+                        <ul class="nonfouoFields">
+                            <li>
+                                <fieldset>
+                                    <legend><a onclick="AL.username();return false;" href="https://www.us.army.mil/suite/pages/usernamereminder/start.ext" title="Request a username reminder to be sent to your external email address" target="_blank" tabindex="-1">Remind me</a><label for="USER">Username</label></legend>
+                                    <input type="text" id="USER" name="USER" autocomplete="off" placeholder="Username" class="iText" />
+                                </fieldset>
+                            </li>
+                            <li>
+                                <fieldset>
+                                    <legend><a onclick="AL.password();return false;" href="https://www.us.army.mil/suite/pages/lostpwd/view.ext" title="Forgot your password? Reset it with the password wizard" target="_blank" tabindex="-1">Reset</a><label for="PASSWORD">Password</label></legend>
+                                    <input type="password" id="PASSWORD" name="PASSWORD" onkeypress="return AL.pwKeypress(event);" autocomplete="off" placeholder="Password" class="iText" />
+                                </fieldset>
+                            </li>
+                        </ul>
+                        <div class="signin">
+                            <div class="signinButtonContainer">
+                                <button class="btn primary" title="Sign in with your username and password" onclick="AL.up();">Sign in</button>
+                            </div>
+                            <div id="signinOptionsUP" class="signinOptions">
+                                <ul>
+                                    <li><input type="checkbox" id="lbwnf" name="lbwnf" value="on" />&nbsp;Low Bandwidth</li>
+                                    <li><input type="checkbox" id="webmailnf" name="webmailnf" value="on" />&nbsp;Sign in directly to Webmail</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="help"><a href="https://esd-crm.csd.disa.mil/" title="Open AKO Help" target="_blank">Having trouble accessing AKO?</a></p>
+                    <div class="hr">&nbsp;</div>
+                    <h1>New to AKO? <span class="signup">Sign up</span></h1>
+                    <div class="registerButton">
+                        <form action="https://ako.us.army.mil/suite/pages/reg/startRegistration.ext" method="get">
+                            <button type="submit" title="Create a new account" class="btn">Create Account</button>
+                        </form>
+                    </div>
+                    <p class="help"><a href="https://esd-crm.csd.disa.mil/app/answers/detail/a_id/77" title="AKO account registration and eligibility FAQs" target="_blank">Can I register for an AKO full account?</a></p>
+                </div>
+
+                <div class="aesdHelpLink">
+                    <a href="https://esd-crm.csd.disa.mil/" title="1-866-335-ARMY" target="_blank">Do you need assistance? Please contact the </a>
+                    <a href="https://esd-crm.csd.disa.mil/" title="1-866-335-ARMY" target="_blank">
+                        <img class="aesdHelpImg" src="https://www.us.army.mil/suite/login/aesd_logo.png" alt="1-866-335-ARMY"/>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="push"></div>
+</div>
+<div class="footer">
+    <div class="footContainer">
+        <div class="links">
+				<span class="links1">
+					<a href="https://esd-crm.csd.disa.mil/app/answers/detail/a_id/25/" title="What is AKO?" target="_blank">About</a>
+					<a href="https://esd-crm.csd.disa.mil/" title="Open AKO Help" target="_blank">Help</a>
+					<a href="https://www.us.army.mil/suite/login/AKOTermsOfUse.pdf" title="AKO Terms of Use / Terms of Service" target="_blank">Terms</a>
+				</span>
+            <br/>
+				<span class="links2">
+					<a href="https://www.hrc.army.mil" title="U.S. Army Human Resources Command" target="_blank">Army HRC</a>
+					<a href="https://www.milsuite.mil/book/" title="milSuite" target="_blank">MilBook</a>
+					<a href="https://www.my.af.mil" title="Air Force Portal" target="_blank">Air Force Portal</a>
+					<a href="https://www.marinenet.usmc.mil/portal" title="MarineNet" target="_blank">MarineNet</a>
+					<a href="https://wwwa.nko.navy.mil" title="Navy Knowledge Online" target="_blank">Navy Enterprise Portal</a>
+				</span>
+        </div>
+        <div class="copy">
+            &copy; 2013 Army Knowledge Online. The security accreditation level of this site is UNCLASSIFIED//<span id="footerClass">FOUO and below</span>.<br/>Do not process, store, or transmit information classified above the accreditation level of this system.
+        </div>
+    </div>
+    <div id="botBar" class="classBar">This information system is approved for UNCLASSIFIED//<span id="botClass">FOUO</span> data</div>
+</div>
+<script>AL.init();</script>
+<script src="/suite/login/javascript/photo.js"></script>
+<script src="https://www.us.army.mil/suite/login/alert.js"></script>
+</body>
+</html>
