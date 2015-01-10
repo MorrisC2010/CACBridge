@@ -12,7 +12,7 @@ public class WebViewFragmentClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if(Uri.parse(url).getHost().endsWith("army.mil")) {
+        if(Uri.parse(url).getHost().endsWith(".mil")) {
             return false;
         }
 

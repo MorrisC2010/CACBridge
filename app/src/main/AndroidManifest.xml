@@ -10,7 +10,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        <uses-library android:name="com.android.future.usb.accessory" />
         <activity
             android:name=".StartupSplash"
             android:label="@string/app_name" >
@@ -18,21 +19,19 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
             </intent-filter>
 
             <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
-            <meta-data android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"
-                android:resource="@xml/device_filter" />
         </activity>
-        <activity android:name=".WebViewFragment"/>
-        <activity android:name=".ISAgreement"/>
+        <activity android:name=".NavDrawerFragment">
+        </activity>
+        <activity android:name=".AKOWebViewFragment">
+        </activity>
+        <activity android:name=".MyPayWebViewFragment">
+        </activity>
     </application>
 
 </manifest>

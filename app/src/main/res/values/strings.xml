@@ -5,6 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_stopserv">Stop Service</string>
+    <string name="server_cert_asset_name">/certs/dodca28.cer</string>
+    <string name="client_cert_file_name"></string>
+    <string name="client_cert_password"></string>
+    <string name="example_url">https://www.us.army.mil</string>
     <string name="blank_string"> </string>
     <string name="progress_dialog_title_downloading">Downloading…</string>
     <string name="progress_dialog_title_connecting">Connecting…</string>
@@ -15,6 +19,27 @@
     <string name="error_message_bad_url">Error: Invalid URL!</string>
     <string name="error_message_file_not_found">Error: File not found!</string>
     <string name="error_message_general">Error downloading file!</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1442429329856368/4342492138</string>
+    <string-array name="drawer_array"> <item>Army Knowledge Online</item> <item>Army Enterprise Email</item> <item>DFAS Mypay</item> <item>iPerms</item> <item>Settings</item> <item>Help</item> <item>About CMEnterprises</item> </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Bright Sun</item>
+        <item >Night At</item>
+        <item >Sunshine</item>
+        <item >Rainy Season </item>
+        <item >Winter Season</item>
+        <item >Hot Temp</item>
+    </string-array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
 
 <!--SCR3310 VALUES-->
     <string name="idVendor">0x04E6</string>
